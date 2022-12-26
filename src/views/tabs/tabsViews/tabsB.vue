@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Component A</h1>
+  <div class="">
+    <h1>component b</h1>
   </div>
 </template>
 
@@ -32,3 +32,4 @@ export default {
   color: red;
 }
 </style>
+,

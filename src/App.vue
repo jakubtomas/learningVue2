@@ -9,6 +9,7 @@
       <router-link to="/form">Form Validation</router-link>|
       <router-link to="/bootstrap">bootstrap</router-link>|
       <router-link to="/router">router</router-link>|
+      <router-link to="/tabs">tabs</router-link>|
     </div>
     <router-view />
   </div>
