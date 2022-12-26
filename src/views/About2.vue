@@ -1,9 +1,9 @@
 <template>
   <div class="about">
     <div>
-      <em>Instruction</em><br />
+      <em>Instructiomn</em><br />
       <em>CRUD with async, await , axios </em>
-      <h3>todo app</h3>
+      <h3>using services file for better structure</h3>
       <ul>
         <li v-for="(item, index) in items" :key="index">
           <input
@@ -33,6 +33,7 @@
 </template>
 <script>
 import axios from "axios";
+import TodoAPI from "../services/TodoAPI";
 
 export default {
   name: "Home",
@@ -59,7 +60,8 @@ export default {
       };
 
       try {
-        const response = await axios.post(this.address + "/2/item", data);
+        //const response = await axios.post(this.address + "/2/item", data);
+        const response = await TodoAPI.saveItem(data);
         console.log("post response data");
         console.log(response);
         this.loadData();
@@ -73,7 +75,10 @@ export default {
     },
     async deleteItem(item) {
       try {
-        await axios.delete(this.address + "/2/item/" + item.id);
+        //await axios.delete(this.address + "/2/item/" + item.id);
+        const response = await TodoAPI.deleteItem(item);
+        console.log(" delete response " + response.toString());
+
         this.loadData();
       } catch (error) {
         console.log("error");
@@ -97,10 +102,10 @@ export default {
       };
 
       try {
-        const res = await axios.put(this.address + "/2/item/" + data.id, data);
+        //const res = await axios.put(this.address + "/2/item/" + data.id, data);
+        const res = await TodoAPI.updateItem(data);
         console.log("update response");
         console.log(res);
-
         this.loadData();
       } catch (error) {
         console.log("error");
@@ -109,8 +114,8 @@ export default {
     },
     async loadData() {
       try {
-        const response = await axios.get(this.address + "/2/item");
-        console.log("GET response");
+        const response = await TodoAPI.getItems();
+        console.log("GET responsee");
         console.table(response.data);
         this.items = response.data;
       } catch (error) {
